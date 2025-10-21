@@ -17,7 +17,6 @@
 #endregion
 
 using System;
-using AutoFixture.Xunit2;
 using MicroElements.AutoFixture.NodaTime;
 using NodaTime;
 using Yuma.AutoFixture.Xunit2;
@@ -27,7 +26,7 @@ namespace Yuma;
 public class ClockProviderFixture
 {
 	[Theory]
-	[AutoData]
+	[AutoData<NodaTimeCustomization>]
 	public void CanSetupGetCurrentInstant(Instant instant)
 	{
 		var systemClockProvider = ClockProvider.Instance;
@@ -46,8 +45,8 @@ public class ClockProviderFixture
 	}
 
 	[Theory]
-	[AutoData]
-	public void CanSetupNow(Instant now)
+	[AutoData<NodaTimeCustomization>]
+	public void CanSetupNowExplicitly(Instant now)
 	{
 		using var clockProvider = new ClockProviderMockInjectionScope();
 		clockProvider.Mock.Setup(static m => m.Now)
@@ -59,7 +58,19 @@ public class ClockProviderFixture
 
 	[Theory]
 	[AutoData<NodaTimeCustomization>]
-	public void CanSetupToday(LocalDate today)
+	public void CanSetupNowImplicitly(Instant instant)
+	{
+		using var clockProvider = new ClockProviderMockInjectionScope();
+		clockProvider.Mock.Setup(static m => m.GetCurrentInstant())
+			.Returns(instant);
+
+		ClockProvider.Instance.Now.Should()
+			.Be(instant);
+	}
+
+	[Theory]
+	[AutoData<NodaTimeCustomization>]
+	public void CanSetupTodayExplicitly(LocalDate today)
 	{
 		using var clockProvider = new ClockProviderMockInjectionScope();
 		clockProvider.Mock.Setup(static m => m.Today)
@@ -70,8 +81,22 @@ public class ClockProviderFixture
 	}
 
 	[Theory]
-	[AutoData]
-	public void CanSetupUtcNow(ZonedDateTime now)
+	[AutoData<NodaTimeCustomization>]
+	public void CanSetupTodayImplicitly(Instant instant)
+	{
+		using var clockProvider = new ClockProviderMockInjectionScope();
+		clockProvider.Mock.Setup(static m => m.GetCurrentInstant())
+			.Returns(instant);
+
+		ClockProvider.Instance.Today.Should()
+			.Be(
+				instant.InZone(ClockProvider.SystemDefaultDateTimeZone)
+					.Date);
+	}
+
+	[Theory]
+	[AutoData<NodaTimeCustomization>]
+	public void CanSetupUtcNowExplicitly(ZonedDateTime now)
 	{
 		using var clockProvider = new ClockProviderMockInjectionScope();
 		clockProvider.Mock.Setup(static m => m.UtcNow)
@@ -79,6 +104,18 @@ public class ClockProviderFixture
 
 		ClockProvider.Instance.UtcNow.Should()
 			.Be(now);
+	}
+
+	[Theory]
+	[AutoData<NodaTimeCustomization>]
+	public void CanSetupUtcNowImplicitly(Instant instant)
+	{
+		using var clockProvider = new ClockProviderMockInjectionScope();
+		clockProvider.Mock.Setup(static m => m.GetCurrentInstant())
+			.Returns(instant);
+
+		ClockProvider.Instance.UtcNow.Should()
+			.Be(instant.InUtc());
 	}
 
 	[Fact]

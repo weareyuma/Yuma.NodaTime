@@ -28,6 +28,7 @@
    <ItemGroup>
       <InternalsVisibleTo Include="$(AssemblyName).Tests"/>
       <InternalsVisibleTo Include="$(AssemblyName).Unit"/>
+      <InternalsVisibleTo Include="DynamicProxyGenAssembly2"/>
    </ItemGroup>
 
    <!-- https://learn.microsoft.com/en-us/nuget/reference/msbuild-targets#packing-an-icon-image-file -->

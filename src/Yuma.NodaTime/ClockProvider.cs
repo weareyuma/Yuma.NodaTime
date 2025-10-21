@@ -22,17 +22,19 @@ using NodaTime;
 namespace Yuma;
 
 [SuppressMessage("ReSharper", "MemberCanBeInternal", Justification = "Public API.")]
-public sealed class ClockProvider : IClockProvider
+[SuppressMessage("ReSharper", "ClassWithVirtualMembersNeverInherited.Global", Justification = "Required for mocking purposes.")]
+public class ClockProvider : IClockProvider
 {
 	/// <summary><see cref="ClockProvider"/> singleton instance.</summary>
 	/// <remarks>For unit tests purposes, see its <c>Yuma.NodaTime.Unit, Yuma.ClockProviderMockInjectionScope</c> testing buddy.</remarks>
 	public static IClockProvider Instance { get; internal set; } = new ClockProvider();
 
-	private ClockProvider() { }
+	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Required for mocking purposes.")]
+	internal ClockProvider() { }
 
 	#region IClockProvider Members
 
-	public Instant GetCurrentInstant()
+	public virtual Instant GetCurrentInstant()
 	{
 		return SystemClock.Instance.GetCurrentInstant();
 	}
@@ -40,12 +42,12 @@ public sealed class ClockProvider : IClockProvider
 	public Instant Now => GetCurrentInstant();
 
 	// @formatter:wrap_chained_method_calls chop_if_long
-	public LocalDate Today => Now.InZone(_systemDefaultDateTimeZone).Date;
+	public LocalDate Today => Now.InZone(SystemDefaultDateTimeZone).Date;
 	// @formatter:wrap_chained_method_calls restore
 
 	public ZonedDateTime UtcNow => Now.InUtc();
 
 	#endregion
 
-	private static readonly DateTimeZone _systemDefaultDateTimeZone = DateTimeZoneProviders.Tzdb.GetSystemDefault();
+	internal static readonly DateTimeZone SystemDefaultDateTimeZone = DateTimeZoneProviders.Tzdb.GetSystemDefault();
 }
