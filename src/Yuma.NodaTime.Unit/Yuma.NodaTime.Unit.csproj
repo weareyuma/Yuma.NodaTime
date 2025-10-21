@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
    <PropertyGroup>
-      <AssemblyName>Yuma.NodaTime</AssemblyName>
+      <AssemblyName>Yuma.NodaTime.Unit</AssemblyName>
       <RootNamespace>Yuma</RootNamespace>
-      <Description>Yuma's Distributed Application Libraries: NodaTime Helper Classes and Methods.</Description>
+      <Description>Yuma's Distributed Application Libraries: Unit Testing Buddies for NodaTime Helper Classes and Methods.</Description>
    </PropertyGroup>
 
    <PropertyGroup>
@@ -26,17 +26,16 @@
    </PropertyGroup>
 
    <ItemGroup>
-      <InternalsVisibleTo Include="$(AssemblyName).Tests"/>
-      <InternalsVisibleTo Include="$(AssemblyName).Unit"/>
-   </ItemGroup>
-
-   <!-- https://learn.microsoft.com/en-us/nuget/reference/msbuild-targets#packing-an-icon-image-file -->
-   <ItemGroup>
       <None Include="..\..\yuma-nuget.png" Pack="true" Visible="false" PackagePath="\"/>
    </ItemGroup>
 
    <ItemGroup>
+      <ProjectReference Include="..\Yuma.NodaTime\Yuma.NodaTime.csproj"/>
+   </ItemGroup>
+
+   <ItemGroup>
       <PackageReference Include="Microsoft.SourceLink.GitHub"/>
+      <PackageReference Include="Moq"/>
       <PackageReference Include="NodaTime"/>
    </ItemGroup>
 

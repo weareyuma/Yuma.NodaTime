@@ -9,6 +9,7 @@
 
    <ItemGroup>
       <ProjectReference Include="..\Yuma.NodaTime\Yuma.NodaTime.csproj"/>
+      <ProjectReference Include="..\Yuma.NodaTime.Unit\Yuma.NodaTime.Unit.csproj"/>
    </ItemGroup>
 
    <ItemGroup>
@@ -17,11 +18,14 @@
       <PackageReference Include="AutoFixture.Xunit2"/>
       <PackageReference Include="coverlet.collector"/>
       <PackageReference Include="FluentAssertions"/>
+      <PackageReference Include="MicroElements.AutoFixture.NodaTime"/>
       <PackageReference Include="Microsoft.NET.Test.Sdk"/>
       <PackageReference Include="Moq"/>
+      <PackageReference Include="NodaTime"/>
       <PackageReference Include="xunit"/>
       <PackageReference Include="xunit.analyzers"/>
       <PackageReference Include="xunit.runner.visualstudio"/>
+      <PackageReference Include="Yuma.Unit"/>
    </ItemGroup>
 
 </Project>

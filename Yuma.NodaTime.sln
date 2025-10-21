@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yuma.NodaTime", "src\Yuma.N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yuma.NodaTime.Tests", "src\Yuma.NodaTime.Tests\Yuma.NodaTime.Tests.csproj", "{5027E7BE-3D8D-4395-925F-1C65216B7C1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yuma.NodaTime.Unit", "src\Yuma.NodaTime.Unit\Yuma.NodaTime.Unit.csproj", "{0E887299-3E40-4020-A7F7-51838DE12B3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{5027E7BE-3D8D-4395-925F-1C65216B7C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5027E7BE-3D8D-4395-925F-1C65216B7C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5027E7BE-3D8D-4395-925F-1C65216B7C1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E887299-3E40-4020-A7F7-51838DE12B3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E887299-3E40-4020-A7F7-51838DE12B3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E887299-3E40-4020-A7F7-51838DE12B3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E887299-3E40-4020-A7F7-51838DE12B3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{25368FF5-3597-441A-9CBD-83134C55AE91} = {0D0F586E-803B-478B-A436-39DB4D68DEF3}
